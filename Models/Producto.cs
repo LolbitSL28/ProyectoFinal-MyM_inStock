@@ -25,5 +25,7 @@ namespace MyM_inStock.Models
 
         public virtual List<DetalleVenta> DetallesVenta { get; set; }
 
+        public virtual List<DetalleCompra> DetallesCompra { get; set; }
+
     }
 }

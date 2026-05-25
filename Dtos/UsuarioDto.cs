@@ -29,8 +29,6 @@ namespace MyM_inStock.Dtos
     public class UsuarioPutDto
     {
         [Required]
-        public int Id { get; set; }
-        [Required]
         public string Nombre { get; set; }
         [Required]
         public string ApellidoPaterno { get; set; }

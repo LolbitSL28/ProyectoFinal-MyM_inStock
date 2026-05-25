@@ -40,8 +40,6 @@ namespace MyM_inStock.Dtos
     public class ProductoPutDto
     {
         [Required]
-        public int Id { get; set; }
-        [Required]
         public string Nombre { get; set; }
         [Required]
         public string Descripcion { get; set; }

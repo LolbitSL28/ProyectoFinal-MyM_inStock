@@ -415,8 +415,5 @@ namespace MyM_inStock.Dtos
 
             return (compra, detalles);
         }
-
-
-
     }
 }

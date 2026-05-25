@@ -53,7 +53,7 @@ namespace MyM_inStock.Controllers
         [HttpPut("{id}")]
         public UsuarioPutDto UpdateUsuario(int id,UsuarioPutDto usuario)
         {
-            var usuarioUpdate = _contexto.Usuarios.FirstOrDefault(x => x.Id == usuario.Id);
+            var usuarioUpdate = _contexto.Usuarios.FirstOrDefault(x => x.Id == id);
             usuario.UpdateDto(usuarioUpdate, _contexto);
 
             _contexto.SaveChanges();
