@@ -1,4 +1,5 @@
-﻿namespace MyM_inStock.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace MyM_inStock.Models
 {
     public class Venta
     {
@@ -13,6 +14,7 @@
         public decimal Total { get; set; }
         //Relaciones
         public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
         public virtual List<DetalleVenta> Detalles { get; set; }
     }
 }
