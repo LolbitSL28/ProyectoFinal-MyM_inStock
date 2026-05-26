@@ -20,6 +20,9 @@ import EditProductos from "./pages/Productos/EditProductos";
 import GetVentas from "./pages/Ventas/GetVentas";
 import AddVenta from "./pages/Ventas/AddVenta";
 import DetalleVenta from "./pages/Ventas/DetalleVentas";
+import GetCompras from "./pages/Compras/GetCompras";
+import AddCompra from "./pages/Compras/AddCompras";
+import DetalleCompra from "./pages/Compras/DetalleCompra";
 
 function App() {
   const navigate = useNavigate();
@@ -32,6 +35,7 @@ function App() {
       <button onClick={() => navigate("/proveedores")}>Proveedores</button>
       <button onClick={() => navigate("/productos")}>Productos</button>
       <button onClick={() => navigate("/ventas")}>Ventas</button>
+      <button onClick={() => navigate("/compras")}>Compras</button>
       {!token && <button onClick={() => navigate("/login")}>Login</button>}
       {token && <button onClick={() => navigate("/logout")}>Logout</button>}
       <Routes>
@@ -54,6 +58,9 @@ function App() {
           <Route path="/ventas" element={<GetVentas />} />
           <Route path="/ventas/add" element={<AddVenta />} />
           <Route path="/ventas/:id" element={<DetalleVenta />} />
+          <Route path="/compras" element={<GetCompras />} />
+          <Route path="/compras/add" element={<AddCompra />} />
+          <Route path="/compras/:id" element={<DetalleCompra />} />
         </Route>
       </Routes>
     </div>

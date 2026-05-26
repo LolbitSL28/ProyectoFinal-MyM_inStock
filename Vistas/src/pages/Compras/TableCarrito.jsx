@@ -1,8 +1,12 @@
 import { AgGridReact } from "ag-grid-react";
 import { ModuleRegistry, ClientSideRowModelModule } from "ag-grid-community";
-import { useNavigate } from "react-router-dom";
 
-function TableCarrito({ carrito, onEliminar, onCantidadChange }) {
+function TableCarrito({
+  carrito,
+  onEliminar,
+  onCantidadChange,
+  onPrecioChange,
+}) {
   ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
   const eliminarButton = (props) => {
@@ -30,35 +34,42 @@ function TableCarrito({ carrito, onEliminar, onCantidadChange }) {
     );
   };
 
+  const precioEditor = (props) => {
+    return (
+      <input
+        type="number"
+        step="0.01"
+        value={props.value}
+        onChange={(e) => {
+          const nuevoPrecio = parseFloat(e.target.value) || 0;
+          if (nuevoPrecio > 0) {
+            onPrecioChange(props.data.productoId, nuevoPrecio);
+          }
+        }}
+        min="0.01"
+        style={{ width: "100%", height: "100%" }}
+      />
+    );
+  };
+
   const columns = [
     { field: "nombre", headerName: "Producto", width: 200 },
     {
-      field: "precio",
-      headerName: "Precio",
-      width: 100,
+      field: "precioCompra",
+      headerName: "Precio Compra",
+      cellRenderer: precioEditor,
     },
-    {
-      field: "cantidad",
-      headerName: "Cantidad",
-      width: 120,
-      cellRenderer: cantidadEditor,
-    },
+    { field: "cantidad", headerName: "Cantidad", cellRenderer: cantidadEditor },
     {
       field: "subtotal",
       headerName: "Subtotal",
-      width: 120,
-      valueGetter: (params) => params.data.precio * params.data.cantidad,
+      valueGetter: (params) => params.data.precioCompra * params.data.cantidad,
     },
-    {
-      field: "eliminar",
-      headerName: "Acciones",
-      width: 100,
-      cellRenderer: eliminarButton,
-    },
+    { field: "eliminar", headerName: "Acciones", cellRenderer: eliminarButton },
   ];
 
   return (
-    <div style={{ height: "300px", width: "100%" }}>
+    <div style={{ height: "300px", width: "1070px" }}>
       <AgGridReact rowData={carrito} columnDefs={columns} />
     </div>
   );

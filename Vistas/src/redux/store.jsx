@@ -9,6 +9,7 @@ import { categoriasReducer } from "./slices/categoriasSlice";
 import { proveedoresReducer } from "./slices/proveedoresSlice";
 import { productosReducer } from "./slices/productosSlice";
 import { ventasReducer } from "./slices/ventasSlice";
+import { comprasReducer } from "./slices/comprasSlice";
 
 const persistConfig = {
   key: "auth",
@@ -26,6 +27,7 @@ export const store = configureStore({
     proveedores: proveedoresReducer,
     productos: productosReducer,
     ventas: ventasReducer,
+    compras: comprasReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

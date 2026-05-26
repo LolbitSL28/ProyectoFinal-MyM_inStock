@@ -1,38 +1,43 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addVenta, listarVentas } from "../../redux/actions/ventasActions";
+import { addCompra, listarCompras } from "../../redux/actions/comprasActions";
 import { listarProductos } from "../../redux/actions/productosActions";
+import { listarProveedores } from "../../redux/actions/proveedoresActions";
 import TableCarrito from "./TableCarrito";
 
-function AddVenta() {
+function AddCompra() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productos } = useSelector((state) => state.productos);
+  const { proveedores } = useSelector((state) => state.productos);
   const { user } = useSelector((state) => state.auth);
 
   const [carrito, setCarrito] = useState([]);
   const [selectedProducto, setSelectedProducto] = useState("");
+  const [selectedProveedor, setSelectedProveedor] = useState("");
   const [cantidad, setCantidad] = useState(1);
+  const [precioCompra, setPrecioCompra] = useState(0);
 
   useEffect(() => {
     dispatch(listarProductos());
+    dispatch(listarProveedores());
   }, [dispatch]);
 
   function agregarAlCarrito() {
-    if (!selectedProducto || cantidad <= 0) return;
+    if (!selectedProducto || cantidad <= 0 || precioCompra <= 0) return;
     const producto = productos.find((p) => p.id == selectedProducto);
     if (!producto) return;
-    if (producto.stock < cantidad) {
-      alert(`Stock insuficiente`);
-      return;
-    }
     const existe = carrito.find((item) => item.productoId == producto.id);
     if (existe) {
       setCarrito(
         carrito.map((item) =>
           item.productoId == producto.id
-            ? { ...item, cantidad: item.cantidad + cantidad }
+            ? {
+                ...item,
+                cantidad: item.cantidad + cantidad,
+                precioCompra: precioCompra,
+              }
             : item,
         ),
       );
@@ -42,18 +47,21 @@ function AddVenta() {
         {
           productoId: producto.id,
           nombre: producto.nombre,
-          precio: producto.precioVenta,
+          precioCompra: precioCompra,
           cantidad: cantidad,
         },
       ]);
     }
+
     setSelectedProducto("");
     setCantidad(1);
+    setPrecioCompra(0);
   }
 
   function eliminarDelCarrito(productoId) {
     setCarrito(carrito.filter((item) => item.productoId !== productoId));
   }
+
   function actualizarCantidad(productoId, nuevaCantidad) {
     if (nuevaCantidad <= 0) {
       eliminarDelCarrito(productoId);
@@ -68,39 +76,80 @@ function AddVenta() {
     }
   }
 
-  function calcularSubtotal() {
-    return carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+  function actualizarPrecio(productoId, nuevoPrecio) {
+    if (nuevoPrecio > 0) {
+      setCarrito(
+        carrito.map((item) =>
+          item.productoId === productoId
+            ? { ...item, precioCompra: nuevoPrecio }
+            : item,
+        ),
+      );
+    }
   }
+
+  function calcularSubtotal() {
+    return carrito.reduce(
+      (sum, item) => sum + item.precioCompra * item.cantidad,
+      0,
+    );
+  }
+
   function calcularIva() {
     return calcularSubtotal() * 0.16;
   }
+
   function calcularTotal() {
     return calcularSubtotal() + calcularIva();
   }
+
   async function guardar() {
     if (carrito.length === 0) {
       alert("Agregue mínimo un producto");
       return;
     }
 
-    const ventaData = {
+    if (!selectedProveedor) {
+      alert("Seleccione un proveedor");
+      return;
+    }
+
+    const compraData = {
       usuarioId: user?.id,
+      proveedorId: selectedProveedor,
       detalles: carrito.map((item) => ({
         productoId: item.productoId,
         cantidad: item.cantidad,
+        precioCompra: item.precioCompra,
       })),
     };
 
-    dispatch(addVenta(ventaData)).then(() =>
-      alert("Venta registrada correctamente"),
+    dispatch(addCompra(compraData)).then(() =>
+      alert("Compra registrada correctamente"),
     );
-    await dispatch(listarVentas());
-    navigate("/ventas");
+    await dispatch(listarCompras());
+    navigate("/compras");
   }
 
   return (
     <>
-      <h1>Nueva Venta</h1>
+      <h1>Nueva Compra</h1>
+      <h2>Seleccionar Proveedor</h2>
+      <label>
+        Proveedor:{" "}
+        <select
+          value={selectedProveedor}
+          onChange={(e) => setSelectedProveedor(e.target.value)}
+        >
+          <option value="">Seleccione un proveedor</option>
+          {proveedores?.map((prov) => (
+            <option key={prov.id} value={prov.id}>
+              {prov.nombre}
+            </option>
+          ))}
+        </select>
+      </label>
+      <hr />
       <h2>Seleccionar Producto</h2>
       <label>
         Producto:{" "}
@@ -111,7 +160,7 @@ function AddVenta() {
           <option value="">Seleccione un producto</option>
           {productos?.map((prod) => (
             <option key={prod.id} value={prod.id}>
-              {prod.nombre} - ${prod.precioVenta} (Stock: {prod.stock})
+              {prod.nombre} - Stock actual: {prod.stock}
             </option>
           ))}
         </select>
@@ -123,6 +172,16 @@ function AddVenta() {
           value={cantidad}
           onChange={(e) => setCantidad(parseInt(e.target.value) || 0)}
           min="1"
+        />
+      </label>
+      <label>
+        Precio de Compra:{" "}
+        <input
+          type="number"
+          step="0.01"
+          value={precioCompra}
+          onChange={(e) => setPrecioCompra(parseFloat(e.target.value) || 0)}
+          min="0.01"
         />
       </label>
       <button type="button" onClick={agregarAlCarrito}>
@@ -141,17 +200,18 @@ function AddVenta() {
           </div>
         </>
       )}
-      <TableDetallesVenta
+      <TableCarrito
         carrito={carrito}
         onEliminar={eliminarDelCarrito}
         onCantidadChange={actualizarCantidad}
+        onPrecioChange={actualizarPrecio}
       />
       <br />
       <button type="button" onClick={guardar}>
-        Registrar Venta
+        Registrar Compra
       </button>
     </>
   );
 }
 
-export default AddVenta;
+export default AddCompra;

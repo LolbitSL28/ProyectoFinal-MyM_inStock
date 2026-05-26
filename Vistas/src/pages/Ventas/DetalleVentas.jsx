@@ -36,7 +36,7 @@ function DetalleVenta() {
         <strong>Total:</strong> ${venta.total}
       </p>
       <h2>Productos</h2>
-      <div style={{ height: "300px", width: "1070px" }}>
+      <div>
         <TableDetalleVenta detalles={venta.detalles} />
       </div>
     </>
