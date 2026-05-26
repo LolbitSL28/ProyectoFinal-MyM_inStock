@@ -11,6 +11,9 @@ import { useSelector } from "react-redux";
 import GetCategorias from "./pages/Categorias/GetCategorias";
 import AddCategorias from "./pages/Categorias/AddCategorias";
 import EditCategorias from "./pages/Categorias/EditCategorias";
+import GetProveedores from "./pages/Proveedores/GetProveedores";
+import AddProveedores from "./pages/Proveedores/AddProveedores";
+import EditProveedores from "./pages/Proveedores/EditProveedores";
 
 function App() {
   const navigate = useNavigate();
@@ -20,6 +23,7 @@ function App() {
       <button onClick={() => navigate("/")}>Home</button>
       <button onClick={() => navigate("/users")}>Users</button>
       <button onClick={() => navigate("/categorias")}>Categorias</button>
+      <button onClick={() => navigate("/proveedores")}>Proveedores</button>
       {!token && <button onClick={() => navigate("/login")}>Login</button>}
       {token && <button onClick={() => navigate("/logout")}>Logout</button>}
       <Routes>
@@ -33,6 +37,9 @@ function App() {
           <Route path="/categorias" element={<GetCategorias />} />
           <Route path="/categorias/add" element={<AddCategorias />} />
           <Route path="/categorias/edit/:id" element={<EditCategorias />} />
+          <Route path="/proveedores" element={<GetProveedores />} />
+          <Route path="/proveedores/add" element={<AddProveedores />} />
+          <Route path="/proveedores/edit/:id" element={<EditProveedores />} />
         </Route>
       </Routes>
     </div>
