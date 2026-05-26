@@ -48,7 +48,6 @@ function EditUsuarios() {
     await dispatch(editUsuarios({ id: usuario.id, data: usuario })).then(() =>
       alert("Modificación correcta"),
     );
-    console.log(usuario);
     await dispatch(listarUsuarios());
     navigate("/users");
   }

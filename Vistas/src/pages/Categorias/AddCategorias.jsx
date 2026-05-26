@@ -16,7 +16,6 @@ function AddCategorias() {
 
   async function guardar() {
     dispatch(addCategorias(categoria)).then(() => alert("Guardado correcto"));
-    console.log(categoria);
     await dispatch(listarCategorias());
     setCategoria({
       nombre: "",

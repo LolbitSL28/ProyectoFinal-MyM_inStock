@@ -20,7 +20,6 @@ function AddUsuarios() {
 
   async function guardarUsr() {
     dispatch(addUsuarios(usuario)).then(() => alert("Guardado correcto"));
-    console.log(usuario);
     await dispatch(listarUsuarios());
     setUsuario({
       nombre: "",

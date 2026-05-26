@@ -15,7 +15,12 @@ function TableCategorias({ categorias }) {
   const navigate = useNavigate();
 
   async function handleDelete(id) {
-    console.log(id);
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar esta categoría?",
+    );
+    if (!confirmDelete) {
+      return;
+    }
     await dispatch(elimCategorias(id)).then(() => alert("Eliminado correcto"));
     await dispatch(listarCategorias());
   }
@@ -26,7 +31,6 @@ function TableCategorias({ categorias }) {
     );
   };
   function editButton(id) {
-    console.log(id);
     navigate(`/categorias/edit/${id}`);
   }
 

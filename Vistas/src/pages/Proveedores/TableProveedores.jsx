@@ -15,6 +15,12 @@ function TableProveedores({ proveedores }) {
   const navigate = useNavigate();
 
   async function handleDelete(id) {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este proveedor?",
+    );
+    if (!confirmDelete) {
+      return;
+    }
     await dispatch(elimProveedores(id)).then(() => alert("Eliminado correcto"));
     await dispatch(listarProveedores());
   }

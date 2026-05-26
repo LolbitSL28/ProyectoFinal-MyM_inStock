@@ -15,7 +15,12 @@ function TableUsers({ usuarios }) {
   const navigate = useNavigate();
 
   async function handleDelete(id) {
-    console.log(id);
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este usuario?",
+    );
+    if (!confirmDelete) {
+      return;
+    }
     await dispatch(elimUsuarios(id)).then(() => alert("Eliminado correcto"));
     await dispatch(listarUsuarios());
   }
@@ -26,7 +31,6 @@ function TableUsers({ usuarios }) {
     );
   };
   function editButton(id) {
-    console.log(id);
     navigate(`/users/edit/${id}`);
   }
 

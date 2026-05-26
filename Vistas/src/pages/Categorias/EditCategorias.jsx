@@ -42,7 +42,6 @@ function EditCategorias() {
     await dispatch(editCategorias({ id: categoria.id, data: categoria })).then(
       () => alert("Modificación correcta"),
     );
-    console.log(categoria);
     await dispatch(listarCategorias());
     navigate("/categorias");
   }
