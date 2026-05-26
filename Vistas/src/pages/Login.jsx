@@ -11,14 +11,11 @@ function Login() {
   });
 
   async function LogOn() {
-    console.log(usuario);
     const result = await dispatch(actLogin(usuario));
-    console.log(result);
     if (result.payload?.token) {
-      console.log("Login exitoso, navegando...");
       navigate("/");
     } else {
-      console.log("Login falló:", result.error);
+      alert("Credenciales incorrectas");
     }
   }
   function change(e) {
@@ -32,6 +29,7 @@ function Login() {
 
   return (
     <>
+      <h1>Login</h1>
       <h2>Formulario</h2>
       <label>
         Username:{" "}

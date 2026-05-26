@@ -63,6 +63,7 @@ function EditUsuarios() {
 
   return (
     <>
+      <h1>Editar Usuario</h1>
       <h2>Formulario</h2>
       <label>
         Nombre(s):{" "}

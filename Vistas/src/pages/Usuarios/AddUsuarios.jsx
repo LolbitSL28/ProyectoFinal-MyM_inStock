@@ -43,6 +43,7 @@ function AddUsuarios() {
 
   return (
     <>
+      <h1>Agregar Usuario</h1>
       <h2>Formulario</h2>
       <label>
         Nombre(s):{" "}

@@ -15,6 +15,7 @@ function GetUsuarios() {
 
   return (
     <>
+      <h1>Usuarios</h1>
       <button onClick={() => dispatch(listarUsuarios())}>Actualizar</button>
       <button onClick={() => navigate("/users/add")}>Agregar Usuario</button>
       <TableUsers usuarios={usuarios} />
