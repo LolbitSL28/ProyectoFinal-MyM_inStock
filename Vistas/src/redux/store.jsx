@@ -8,6 +8,7 @@ import { setStore } from "../service/storeHelp";
 import { categoriasReducer } from "./slices/categoriasSlice";
 import { proveedoresReducer } from "./slices/proveedoresSlice";
 import { productosReducer } from "./slices/productosSlice";
+import { ventasReducer } from "./slices/ventasSlice";
 
 const persistConfig = {
   key: "auth",
@@ -24,6 +25,7 @@ export const store = configureStore({
     categorias: categoriasReducer,
     proveedores: proveedoresReducer,
     productos: productosReducer,
+    ventas: ventasReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
