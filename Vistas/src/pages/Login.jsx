@@ -12,13 +12,14 @@ function Login() {
 
   async function LogOn() {
     console.log(usuario);
-    await dispatch(actLogin(usuario));
-    setUsuario({
-      username: "",
-      password: "",
-    });
-
-    navigate("/");
+    const result = await dispatch(actLogin(usuario));
+    console.log(result);
+    if (result.payload?.token) {
+      console.log("Login exitoso, navegando...");
+      navigate("/");
+    } else {
+      console.log("Login falló:", result.error);
+    }
   }
   function change(e) {
     const { name, value } = e.target;

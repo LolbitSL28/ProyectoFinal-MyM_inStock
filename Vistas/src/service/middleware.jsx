@@ -3,7 +3,7 @@ import axios from "axios";
 import { getStore } from "./storeHelp";
 
 const api = axios.create({
-  baseURL: "https://localhost:7163/api",
+  baseURL: "https://localhost:7163",
 });
 api.interceptors.request.use((config) => {
   const store = getStore();
