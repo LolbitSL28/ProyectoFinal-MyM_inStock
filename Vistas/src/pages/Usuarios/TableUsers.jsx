@@ -22,30 +22,24 @@ function TableUsers({ usuarios }) {
 
   const eliminarButton = (props) => {
     return (
-      <button onClick={() => handleDelete(props.data.usuarioId)}>
-        Eliminar
-      </button>
+      <button onClick={() => handleDelete(props.data.id)}>Eliminar</button>
     );
   };
   function editButton(id) {
     console.log(id);
-    navigate(`/edit/${id}`);
+    navigate(`/users/edit/${id}`);
   }
 
   const modificarButton = (props) => {
-    return (
-      <button onClick={() => editButton(props.data.usuarioId)}>
-        Modificar
-      </button>
-    );
+    return <button onClick={() => editButton(props.data.id)}>Modificar</button>;
   };
 
   const columns = [
-    { field: "usuarioId", headerName: "ID", width: 70 },
+    { field: "id", headerName: "ID", width: 70 },
     { field: "nombre", headerName: "Nombre" },
     { field: "apellidoPaterno", headerName: "Apellido Paterno" },
     { field: "apellidoMaterno", headerName: "Apellido Materno" },
-    { field: "nombreUsuario", headerName: "Username" },
+    { field: "username", headerName: "Username" },
     { field: "modificar", cellRenderer: modificarButton, width: 95 },
     { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
   ];

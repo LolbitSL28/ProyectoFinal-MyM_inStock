@@ -4,10 +4,11 @@ import { listarUsuarios } from "../../redux/actions/usuariosActions";
 import { useNavigate } from "react-router-dom";
 import TableUsers from "./TableUsers";
 
-function ObtenerUsuarios() {
+function GetUsuarios() {
   const dispatch = useDispatch();
   const { usuarios } = useSelector((store) => store.usuarios);
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(listarUsuarios());
   }, [dispatch]);
@@ -21,4 +22,4 @@ function ObtenerUsuarios() {
   );
 }
 
-export default ObtenerUsuarios;
+export default GetUsuarios;

@@ -5,6 +5,7 @@ import GetUsuarios from "./pages/Usuarios/GetUsuarios";
 import "./App.css";
 import AddUsuarios from "./pages/Usuarios/AddUsuarios";
 import Login from "./pages/Login";
+import EditUsuarios from "./pages/Usuarios/EditUsuarios";
 
 function App() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function App() {
         <Route element={<RutasPrivadas />}>
           <Route path="/users" element={<GetUsuarios />} />
           <Route path="/users/add" element={<AddUsuarios />} />
+          <Route path="/users/edit/:id" element={<EditUsuarios />} />
         </Route>
       </Routes>
     </div>

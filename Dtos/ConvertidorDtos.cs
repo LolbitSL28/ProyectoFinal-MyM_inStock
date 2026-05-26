@@ -9,6 +9,7 @@ namespace MyM_inStock.Dtos
         {
             return new UsuarioGetDto
             {
+                Id = usuario.Id,
                 Nombre = usuario.Nombre,
                 ApellidoPaterno = usuario.ApellidoPaterno,
                 ApellidoMaterno = usuario.ApellidoMaterno,
@@ -23,7 +24,7 @@ namespace MyM_inStock.Dtos
             {
                 lista.Add(new UsuarioGetDto
                 {
-
+                    Id = usuario.Id,
                     Nombre = usuario.Nombre,
                     ApellidoPaterno = usuario.ApellidoPaterno,
                     ApellidoMaterno = usuario.ApellidoMaterno,

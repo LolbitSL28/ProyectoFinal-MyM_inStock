@@ -29,9 +29,7 @@ function EditUsuarios() {
     const response = await dispatch(listarUsuarios());
     if (response.type === "usuarios/listar/fulfilled") {
       const usuarios = response.payload;
-      const foundUser = usuarios.find(
-        (user) => user.usuarioId == id || user.id == id,
-      );
+      const foundUser = usuarios.find((user) => user.Id == id || user.id == id);
       if (foundUser) {
         setUsuario({
           id: foundUser.id,
@@ -52,7 +50,7 @@ function EditUsuarios() {
     );
     console.log(usuario);
     await dispatch(listarUsuarios());
-    navigate("/usuarios");
+    navigate("/users");
   }
   function change(e) {
     const { name, value } = e.target;

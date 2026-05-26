@@ -42,7 +42,7 @@ namespace MyM_inStock.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public bool DeleteUsuario(int id)
         {
             var usuario = _contexto.Usuarios.FirstOrDefault(x => x.Id == id);
