@@ -141,7 +141,7 @@ function AddVenta() {
           </div>
         </>
       )}
-      <TableDetallesVenta
+      <TableCarrito
         carrito={carrito}
         onEliminar={eliminarDelCarrito}
         onCantidadChange={actualizarCantidad}
