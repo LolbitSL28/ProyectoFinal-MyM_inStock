@@ -17,6 +17,7 @@ function GetUsuarios() {
   return (
     <div className="usuarios-container">
       <h1>Usuarios</h1>
+      <br/>
       <div className="action-bar">
         <button className="btn-action btn-refresh" onClick={() => dispatch(listarUsuarios())}>Actualizar</button>
         <button className="btn-action btn-add" onClick={() => navigate("/users/add")}>Agregar Usuario</button>

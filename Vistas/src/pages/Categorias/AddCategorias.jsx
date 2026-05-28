@@ -5,6 +5,8 @@ import {
   listarCategorias,
 } from "../../redux/actions/categoriasActions";
 import { useNavigate } from "react-router-dom";
+import "./Categorias.css";
+
 function AddCategorias() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,27 +36,33 @@ function AddCategorias() {
   }
 
   return (
-    <>
+    <div className="categorias-container">
       <h1>Agregar Categoria</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre(s):{" "}
-        <input type="text" name="nombre" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <label>
-        Descripción:{" "}
-        <input
-          type="text"
-          name="descripcion"
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <button type="button" onClick={guardar}>
-        Añadir Categoria
-      </button>
-    </>
+      <h2>Ingrese los datos:</h2>
+      <form className="categorias-form" onSubmit={(e) => { e.preventDefault(); guardar(); }}>
+        <div className="form-group">
+          <label>
+            Nombre(s):{" "}
+            <input type="text" name="nombre" onChange={change}></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Descripción:{" "}
+            <input
+              type="text"
+              name="descripcion"
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+
+        <button type="submit" className="btn-submit">
+          Añadir Categoria
+        </button>
+      </form>     
+    </div>
   );
 }
 

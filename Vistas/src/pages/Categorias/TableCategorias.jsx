@@ -7,6 +7,7 @@ import {
   elimCategorias,
   listarCategorias,
 } from "../../redux/actions/categoriasActions";
+import "./Categorias.css";
 
 function TableCategorias({ categorias }) {
   ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -27,7 +28,7 @@ function TableCategorias({ categorias }) {
 
   const eliminarButton = (props) => {
     return (
-      <button onClick={() => handleDelete(props.data.id)}>Eliminar</button>
+      <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
     );
   };
   function editButton(id) {
@@ -35,21 +36,24 @@ function TableCategorias({ categorias }) {
   }
 
   const modificarButton = (props) => {
-    return <button onClick={() => editButton(props.data.id)}>Modificar</button>;
+    return <button grid-btn grid-btn-edit onClick={() => editButton(props.data.id)}>Modificar</button>;
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre" },
-    { field: "descripcion", headerName: "Descripción" },
-    { field: "modificar", cellRenderer: modificarButton, width: 95 },
-    { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
+    { field: "nombre", headerName: "Nombre", flex: 1 },
+    { field: "descripcion", headerName: "Descripción", flex: 2 },
+    { field: "modificar", cellRenderer: modificarButton, width: 110},
+    { field: "eliminar", cellRenderer: eliminarButton, width: 110},
   ];
 
   return (
-    <div style={{ height: "300px", width: "700px" }}>
-      <AgGridReact rowData={categorias} columnDefs={columns} />
+    <div className="table-wrapper">
+      <div className="ag-theme-alpine" style={{ height: "350px", width: "100%" }}>
+        <AgGridReact rowData={categorias} columnDefs={columns} />
+      </div>
     </div>
+    
   );
 }
 export default TableCategorias;

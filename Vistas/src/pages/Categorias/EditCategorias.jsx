@@ -5,6 +5,7 @@ import {
   listarCategorias,
 } from "../../redux/actions/categoriasActions";
 import { useNavigate, useParams } from "react-router-dom";
+import "./Categorias.css";
 
 function EditCategorias() {
   const dispatch = useDispatch();
@@ -55,33 +56,39 @@ function EditCategorias() {
   }
 
   return (
-    <>
+    <div className="categorias-container">
       <h1>Editar Categoria</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre(s):{" "}
-        <input
-          type="text"
-          name="nombre"
-          value={categoria.nombre}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Descripción:{" "}
-        <input
-          type="text"
-          name="descripcion"
-          value={categoria.descripcion}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <button type="button" onClick={guardar}>
-        Modificar Categoria
-      </button>
-    </>
+      <h2>Ingrese los datos:</h2>
+      <form className="category-form" onSubmit={(e) => { e.preventDefault(); guardar(); }}>
+        <div className="form-group">
+          <label>
+            Nombre(s):{" "}
+            <input
+              type="text"
+              name="nombre"
+              value={categoria.nombre}
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+        
+        <div className="form-group">
+          <label>
+            Descripción:{" "}
+            <input
+              type="text"
+              name="descripcion"
+              value={categoria.descripcion}
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+
+        <button type="submit" className="btn-submit">
+          Modificar Categoria
+        </button>
+      </form>
+    </div>
   );
 }
 

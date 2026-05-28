@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listarCategorias } from "../../redux/actions/categoriasActions";
 import { useNavigate } from "react-router-dom";
 import TableCategorias from "./TableCategorias";
+import "./Categorias.css";
 
 function GetCategorias() {
   const dispatch = useDispatch();
@@ -14,14 +15,15 @@ function GetCategorias() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="categorias-container">
       <h1>Categorias</h1>
-      <button onClick={() => dispatch(listarCategorias())}>Actualizar</button>
-      <button onClick={() => navigate("/categorias/add")}>
-        Agregar Categoria
-      </button>
+      <br/>
+      <div className="action-bar">
+        <button className="btn-action btn-refresh" onClick={() => dispatch(listarCategorias())}>Actualizar</button>
+        <button className="btn-action btn-add" onClick={() => navigate("/categorias/add")}>Agregar Categoria</button>
+      </div>
       <TableCategorias categorias={categorias} />
-    </>
+    </div>
   );
 }
 
