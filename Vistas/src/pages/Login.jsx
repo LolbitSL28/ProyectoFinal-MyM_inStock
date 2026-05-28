@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actLogin } from "../redux/actions/authActions";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
+
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,27 +30,38 @@ function Login() {
   }
 
   return (
-    <>
-      <h1>Login</h1>
-      <h2>Formulario</h2>
-      <label>
-        Username:{" "}
-        <input type="text" name="username" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <label>
-        Contraseña:{" "}
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <button type="button" onClick={LogOn}>
-        Login
-      </button>
-    </>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-header">
+          <h1>Login</h1>
+          <br/>
+        </div>
+        
+        <form className="login-form" onSubmit={(e) => { e.preventDefault(); LogOn(); }}>
+          <div className="form-group">
+            <label>
+              Username:{" "}
+              <input type="text" name="username" onChange={change}></input>
+            </label>
+          </div>
+
+          <div className="form-group">
+            <label>
+              Contraseña:{" "}
+              <input
+                type="password"
+                name="password"
+                onChange={change}
+              ></input>
+            </label>
+          </div>
+
+          <button type="submit" className="btn-login-submit">
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 
