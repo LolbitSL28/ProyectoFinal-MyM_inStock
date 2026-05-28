@@ -27,7 +27,7 @@ function TableUsers({ usuarios }) {
 
   const eliminarButton = (props) => {
     return (
-      <button onClick={() => handleDelete(props.data.id)}>Eliminar</button>
+      <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
     );
   };
   function editButton(id) {
@@ -35,23 +35,26 @@ function TableUsers({ usuarios }) {
   }
 
   const modificarButton = (props) => {
-    return <button onClick={() => editButton(props.data.id)}>Modificar</button>;
+    return <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>;
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre" },
-    { field: "apellidoPaterno", headerName: "Apellido Paterno" },
-    { field: "apellidoMaterno", headerName: "Apellido Materno" },
-    { field: "username", headerName: "Username" },
-    { field: "modificar", cellRenderer: modificarButton, width: 95 },
-    { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
+    { field: "nombre", headerName: "Nombre", flex: 1 },
+    { field: "apellidoPaterno", headerName: "Apellido Paterno", flex: 1 },
+    { field: "apellidoMaterno", headerName: "Apellido Materno", flex: 1 },
+    { field: "username", headerName: "Username", flex: 1 },
+    { field: "modificar", cellRenderer: modificarButton, width: 95, flex: 1 },
+    { field: "eliminar", cellRenderer: eliminarButton, width: 90, flex: 1 },
   ];
 
   return (
-    <div style={{ height: "300px", width: "1070px" }}>
-      <AgGridReact rowData={usuarios} columnDefs={columns} />
+    <div className="table-wrapper">
+      <div className="ag-theme-alpine" style={{ height: "300px", width: "100%" }}>
+        <AgGridReact rowData={usuarios} columnDefs={columns} />
+      </div>
     </div>
+    
   );
 }
 export default TableUsers;

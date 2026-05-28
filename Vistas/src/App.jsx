@@ -31,7 +31,7 @@ function App() {
     <div className="app-layout">
       <nav className="navbar">
           <div className="navbar-arriba" onClick={() => navigate("/")}>
-            <img src="/fatass_teto_plush.jpg" alt="Logo MyM" className="navbar-logo"/>
+            <img src="/Logo_MM_png.png" alt="Logo MyM" className="navbar-logo"/>
             <span>MyM inStock</span>
           </div>
         <div className="navbar-buttons">

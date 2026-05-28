@@ -5,7 +5,7 @@ function Home() {
       <header className="home-hero">
         <div className="hero-content">
           <h1>MyM inStock</h1>
-          <p>calando el home a ver si me acuerdo del css</p>
+          <p>La mejor tienda de abarrotes con los mejores productos de calidad</p>
         </div>
       </header>
     </div>
