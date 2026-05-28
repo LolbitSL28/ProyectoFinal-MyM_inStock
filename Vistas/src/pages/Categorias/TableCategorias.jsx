@@ -36,15 +36,15 @@ function TableCategorias({ categorias }) {
   }
 
   const modificarButton = (props) => {
-    return <button grid-btn grid-btn-edit onClick={() => editButton(props.data.id)}>Modificar</button>;
+    return <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>;
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "nombre", headerName: "Nombre", flex: 1 },
     { field: "descripcion", headerName: "Descripción", flex: 2 },
-    { field: "modificar", cellRenderer: modificarButton, width: 110},
-    { field: "eliminar", cellRenderer: eliminarButton, width: 110},
+    { field: "modificar", cellRenderer: modificarButton, width: 110, flex: 1},
+    { field: "eliminar", cellRenderer: eliminarButton, width: 110, flex: 1},
   ];
 
   return (
