@@ -57,7 +57,6 @@ function TableProductos({ productos }) {
     <div style={{ height: "300px", width: "100%" }}>
       <AgGridReact rowData={productos} columnDefs={columns} />
     </div>
-  </div>
 );
 }
 export default TableProductos;
