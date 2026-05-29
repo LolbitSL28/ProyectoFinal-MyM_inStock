@@ -94,3 +94,18 @@
   background-color: #1d4ed8;
   transform: translateY(-1px);
 }
+
+.grid-btn {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.grid-btn-detalle {
+  background-color: #0a9948c9;
+  color: white;
+}

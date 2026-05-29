@@ -17,6 +17,7 @@ function GetVentas() {
  return (
   <div className="ventas-container">
     <h1>Ventas</h1>
+    <br/>
     <div className="action-bar">
       <button className="btn-action btn-refresh" onClick={() => dispatch(listarVentas())}>Actualizar</button>
       <button className="btn-action btn-add" onClick={() => navigate("/ventas/add")}>Nueva Venta</button>

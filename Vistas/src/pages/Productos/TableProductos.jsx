@@ -27,7 +27,7 @@ function TableProductos({ productos }) {
 
   const eliminarButton = (props) => {
     return (
-      <button onClick={() => handleDelete(props.data.id)}>Eliminar</button>
+      <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
     );
   };
   function editButton(id) {
@@ -35,25 +35,25 @@ function TableProductos({ productos }) {
   }
 
   const modificarButton = (props) => {
-    return <button onClick={() => editButton(props.data.id)}>Modificar</button>;
+    return <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>;
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre" },
-    { field: "descripcion", headerName: "Descripción" },
-    { field: "marca", headerName: "Marca" },
-    { field: "stock", headerName: "Stock" },
-    { field: "precioVenta", headerName: "Precio de Venta" },
-    { field: "precioCompra", headerName: "Precio de Compra" },
-    { field: "categoriaNombre", headerName: "Categoría" },
-    { field: "proveedorNombre", headerName: "Proveedor" },
-    { field: "modificar", cellRenderer: modificarButton, width: 95 },
-    { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
+    { field: "nombre", headerName: "Nombre"},
+    { field: "descripcion", headerName: "Descripción"},
+    { field: "marca", headerName: "Marca"},
+    { field: "stock", headerName: "Stock"},
+    { field: "precioVenta", headerName: "Precio de Venta"},
+    { field: "precioCompra", headerName: "Precio de Compra"},
+    { field: "categoriaNombre", headerName: "Categoría"},
+    { field: "proveedorNombre", headerName: "Proveedor"},
+    { field: "modificar", cellRenderer: modificarButton, width: 110},
+    { field: "eliminar", cellRenderer: eliminarButton, width: 110},
   ];
 
   return (
-    <div style={{ height: "300px", width: "1070px" }}>
+    <div style={{ height: "300px", width: "100%" }}>
       <AgGridReact rowData={productos} columnDefs={columns} />
     </div>
   );

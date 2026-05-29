@@ -18,6 +18,7 @@ function GetCompras() {
 return (
   <div className="compras-container">
     <h1>Compras</h1>
+    <br/>
     <div className="action-bar">
       <button className="btn-action btn-refresh" onClick={() => dispatch(listarCompras())}>Actualizar</button>
       <button className="btn-action btn-add" onClick={() => navigate("/compras/add")}>Nueva Compra</button>
