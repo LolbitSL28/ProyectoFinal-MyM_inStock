@@ -27,7 +27,7 @@ function TableProveedores({ proveedores }) {
 
   const eliminarButton = (props) => {
     return (
-      <button onClick={() => handleDelete(props.data.id)}>Eliminar</button>
+      <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
     );
   };
   function editButton(id) {
@@ -35,21 +35,23 @@ function TableProveedores({ proveedores }) {
   }
 
   const modificarButton = (props) => {
-    return <button onClick={() => editButton(props.data.id)}>Modificar</button>;
+    return <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>;
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre" },
-    { field: "telefono", headerName: "Teléfono" },
-    { field: "direccion", headerName: "Dirección" },
-    { field: "modificar", cellRenderer: modificarButton, width: 95 },
-    { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
+    { field: "nombre", headerName: "Nombre", flex: 1 },
+    { field: "telefono", headerName: "Teléfono", flex: 1 },
+    { field: "direccion", headerName: "Dirección", flex: 2 },
+    { field: "modificar", cellRenderer: modificarButton, width: 110, flex: 1 },
+    { field: "eliminar", cellRenderer: eliminarButton, width: 110, flex: 1 },
   ];
 
   return (
-    <div style={{ height: "300px", width: "1070px" }}>
-      <AgGridReact rowData={proveedores} columnDefs={columns} />
+    <div className="table-wrapper">
+      <div style={{ height: "300px", width: "100%" }}>
+        <AgGridReact rowData={proveedores} columnDefs={columns} />
+      </div>
     </div>
   );
 }
