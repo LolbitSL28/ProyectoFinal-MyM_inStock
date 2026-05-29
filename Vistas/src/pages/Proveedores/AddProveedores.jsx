@@ -5,6 +5,8 @@ import {
   listarProveedores,
 } from "../../redux/actions/proveedoresActions";
 import { useNavigate } from "react-router-dom";
+import "./Proveedores.css";
+
 function AddProveedores() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,28 +38,36 @@ function AddProveedores() {
   }
 
   return (
-    <>
+    <div className="proveedores-container">
       <h1>Agregar Proveedor</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre(s):{" "}
-        <input type="text" name="nombre" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <label>
-        Teléfono:{" "}
-        <input type="text" name="telefono" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <label>
-        Dirección:{" "}
-        <input type="text" name="direccion" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <button type="button" onClick={guardar}>
-        Añadir Proveedor
-      </button>
-    </>
+      <h2>Ingrese los datos:</h2>
+      <form className="proveedor-form" onSubmit={(e) => { e.preventDefault(); guardar(); }}>
+        <div className="form-group">
+          <label>
+            Nombre(s):{" "}
+            <input type="text" name="nombre" onChange={change}></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Teléfono:{" "}
+            <input type="text" name="telefono" onChange={change}></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Dirección:{" "}
+          <input type="text" name="direccion" onChange={(e) => change(e)}></input>
+        </label>
+        </div>
+
+        <button type="submit" className="btn-submit">
+          Añadir Proveedor
+        </button>
+      </form>
+    </div>
   );
 }
 

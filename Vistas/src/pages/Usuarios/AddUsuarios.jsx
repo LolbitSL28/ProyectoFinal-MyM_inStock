@@ -5,6 +5,8 @@ import {
   listarUsuarios,
 } from "../../redux/actions/usuariosActions";
 import { useNavigate } from "react-router-dom";
+import "./Usuarios.css";
+
 function AddUsuarios() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,50 +43,62 @@ function AddUsuarios() {
   }
 
   return (
-    <>
+    <div className="usuarios-container">
       <h1>Agregar Usuario</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre(s):{" "}
-        <input type="text" name="nombre" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <label>
-        Apellido Paterno:{" "}
-        <input
-          type="text"
-          name="apellidoPaterno"
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Apellido Materno:{" "}
-        <input
-          type="text"
-          name="apellidoMaterno"
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Username:{" "}
-        <input type="text" name="username" onChange={(e) => change(e)}></input>
-      </label>
-      <br />
-      <label>
-        Contraseña:{" "}
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <button type="button" onClick={guardarUsr}>
-        Añadir Usuario
-      </button>
-    </>
+      <h2>Ingrese los datos:</h2>
+      <form className="user-form" onSubmit={(e) => { e.preventDefault(); guardarUsr(); }}>
+        <div className="form-group">
+          <label>
+            Nombre(s):{" "}
+            <input type="text" name="nombre" onChange={change}></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Apellido Paterno:{" "}
+            <input
+              type="text"
+              name="apellidoPaterno"
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+        
+        <div className="form-group">
+          <label>
+            Apellido Materno:{" "}
+            <input
+              type="text"
+              name="apellidoMaterno"
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+      
+        <div className="form-group">
+          <label>
+            Username:{" "}
+            <input type="text" name="username" onChange={change}></input>
+          </label>
+        </div>
+      
+        <div className="form-group">
+          <label>
+            Contraseña:{" "}
+            <input
+              type="password"
+              name="password"
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+      
+        <button type="submit" className="btn-submit">
+          Añadir Usuario
+        </button>
+      </form>      
+    </div>
   );
 }
 

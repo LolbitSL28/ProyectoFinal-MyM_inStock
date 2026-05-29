@@ -5,6 +5,7 @@ import {
   listarProveedores,
 } from "../../redux/actions/proveedoresActions";
 import { useNavigate, useParams } from "react-router-dom";
+import "./Proveedores.css";
 
 function EditProveedores() {
   const dispatch = useDispatch();
@@ -57,43 +58,51 @@ function EditProveedores() {
   }
 
   return (
-    <>
+    <div className="proveedores-container">
       <h1>Editar Proveedor</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre(s):{" "}
-        <input
-          type="text"
-          name="nombre"
-          value={proveedor.nombre}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Teléfono:{" "}
-        <input
-          type="text"
-          name="telefono"
-          value={proveedor.telefono}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Dirección:{" "}
-        <input
-          type="text"
-          name="direccion"
-          value={proveedor.direccion}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <button type="button" onClick={guardar}>
-        Modificar Proveedor
-      </button>
-    </>
+      <h2>Introducir los datos:</h2>
+      <form className="proveedor-form" onSubmit={(e) => { e.preventDefault(); guardar(); }}>
+        <div className="form-group">
+          <label>
+            Nombre(s):{" "}
+            <input
+              type="text"
+              name="nombre"
+              value={proveedor.nombre}
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Teléfono:{" "}
+            <input
+              type="text"
+              name="telefono"
+              value={proveedor.telefono}
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Dirección:{" "}
+            <input
+              type="text"
+              name="direccion"
+              value={proveedor.direccion}
+              onChange={change}
+            ></input>
+          </label>
+        </div>
+
+        <button type="submit" className="btn-submit">
+          Modificar Proveedor
+        </button>
+      </form>
+    </div>
   );
 }
 

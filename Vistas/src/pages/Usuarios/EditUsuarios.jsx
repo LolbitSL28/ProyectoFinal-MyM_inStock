@@ -5,6 +5,7 @@ import {
   listarUsuarios,
 } from "../../redux/actions/usuariosActions";
 import { useNavigate, useParams } from "react-router-dom";
+import "./Usuarios.css";
 
 function EditUsuarios() {
   const dispatch = useDispatch();
@@ -61,63 +62,74 @@ function EditUsuarios() {
   }
 
   return (
-    <>
+    <div className="usuarios-container">
       <h1>Editar Usuario</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre(s):{" "}
-        <input
-          type="text"
-          name="nombre"
-          value={usuario.nombre}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Apellido Paterno:{" "}
-        <input
-          type="text"
-          name="apellidoPaterno"
-          value={usuario.apellidoPaterno}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Apellido Materno:{" "}
-        <input
-          type="text"
-          name="apellidoMaterno"
-          value={usuario.apellidoMaterno}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Username:{" "}
-        <input
-          type="text"
-          name="username"
-          value={usuario.username}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Contraseña:{" "}
-        <input
-          type="password"
-          name="password"
-          value={usuario.password}
-          onChange={(e) => change(e)}
-        ></input>
-      </label>
-      <br />
-      <button type="button" onClick={guardarUser}>
-        Modificar Usuario
-      </button>
-    </>
+      <h2>Ingrese los datos:</h2>
+      <form className="user-form" onSubmit={(e) => { e.preventDefault(); guardarUser(); }}>
+        <div className="form-group">
+          <label>
+            Nombre(s):{" "}
+            <input
+              type="text"
+              name="nombre"
+              value={usuario.nombre}
+              onChange={(e) => change(e)}
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Apellido Paterno:{" "}
+            <input
+              type="text"
+              name="apellidoPaterno"
+              value={usuario.apellidoPaterno}
+              onChange={(e) => change(e)}
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Apellido Materno:{" "}
+            <input
+              type="text"
+              name="apellidoMaterno"
+              value={usuario.apellidoMaterno}
+              onChange={(e) => change(e)}
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Username:{" "}
+            <input
+              type="text"
+              name="username"
+              value={usuario.username}
+              onChange={(e) => change(e)}
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Contraseña:{" "}
+            <input
+              type="password"
+              name="password"
+              value={usuario.password}
+              onChange={(e) => change(e)}
+            ></input>
+          </label>
+        </div>
+        <button type="submit" className="btn-submit">
+          Modificar Usuario
+        </button>
+      </form>
+    </div>
   );
 }
 
