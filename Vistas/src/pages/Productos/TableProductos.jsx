@@ -3,6 +3,7 @@ import { ModuleRegistry, ClientSideRowModelModule } from "ag-grid-community";
 import { useDispatch } from "react-redux";
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Productos/Productos.css";
 import {
   elimProductos,
   listarProductos,
@@ -56,6 +57,7 @@ function TableProductos({ productos }) {
     <div style={{ height: "300px", width: "100%" }}>
       <AgGridReact rowData={productos} columnDefs={columns} />
     </div>
-  );
+  </div>
+);
 }
 export default TableProductos;
