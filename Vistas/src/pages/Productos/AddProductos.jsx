@@ -7,6 +7,7 @@ import {
 } from "../../redux/actions/productosActions";
 import { listarCategorias } from "../../redux/actions/categoriasActions";
 import { listarProveedores } from "../../redux/actions/proveedoresActions";
+import "./Productos.css";
 
 function AddProductos() {
   const dispatch = useDispatch();
@@ -54,69 +55,56 @@ function AddProductos() {
   }
 
   return (
-    <>
-      <h1>Agregar Producto</h1>
-      <h2>Formulario</h2>
-      <label>
-        Nombre: <input type="text" name="nombre" onChange={change} />
-      </label>
-      <br />
-      <label>
-        Descripción: <input type="text" name="descripcion" onChange={change} />
-      </label>
-      <br />
-      <label>
-        Marca: <input type="text" name="marca" onChange={change} />
-      </label>
-      <br />
-      <label>
-        Stock: <input type="number" name="stock" onChange={change} />
-      </label>
-      <br />
-      <label>
-        Precio Venta:{" "}
+  <div className="productos-container">
+    <h1>Agregar Producto</h1>
+    <h2 style={{textAlign:"center", color:"#64748b", fontSize:"1.1rem"}}>Ingrese los datos:</h2>
+    <form className="producto-form" onSubmit={(e) => { e.preventDefault(); guardar(); }}>
+      <div className="form-group">
+        <label>Nombre</label>
+        <input type="text" name="nombre" onChange={change} />
+      </div>
+      <div className="form-group">
+        <label>Descripción</label>
+        <input type="text" name="descripcion" onChange={change} />
+      </div>
+      <div className="form-group">
+        <label>Marca</label>
+        <input type="text" name="marca" onChange={change} />
+      </div>
+      <div className="form-group">
+        <label>Stock</label>
+        <input type="number" name="stock" onChange={change} />
+      </div>
+      <div className="form-group">
+        <label>Precio Venta</label>
         <input type="number" step="0.01" name="precioVenta" onChange={change} />
-      </label>
-      <br />
-      <label>
-        Precio Compra:{" "}
-        <input
-          type="number"
-          step="0.01"
-          name="precioCompra"
-          onChange={change}
-        />
-      </label>
-      <br />
-      <label>
-        Categoría:{" "}
+      </div>
+      <div className="form-group">
+        <label>Precio Compra</label>
+        <input type="number" step="0.01" name="precioCompra" onChange={change} />
+      </div>
+      <div className="form-group">
+        <label>Categoría</label>
         <select name="categoriaId" onChange={change}>
           <option value="">Seleccione una categoría</option>
           {categorias?.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.nombre}
-            </option>
+            <option key={cat.id} value={cat.id}>{cat.nombre}</option>
           ))}
         </select>
-      </label>
-      <br />
-      <label>
-        Proveedor:{" "}
+      </div>
+      <div className="form-group">
+        <label>Proveedor</label>
         <select name="proveedorId" onChange={change}>
           <option value="">Seleccione un proveedor</option>
           {proveedores?.map((prov) => (
-            <option key={prov.id} value={prov.id}>
-              {prov.nombre}
-            </option>
+            <option key={prov.id} value={prov.id}>{prov.nombre}</option>
           ))}
         </select>
-      </label>
-      <br />
-      <button type="button" onClick={guardar}>
-        Añadir Producto
-      </button>
-    </>
-  );
+      </div>
+      <button type="submit" className="btn-submit">Añadir Producto</button>
+    </form>
+  </div>
+);
 }
 
 export default AddProductos;

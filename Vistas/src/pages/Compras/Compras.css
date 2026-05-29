@@ -1,4 +1,4 @@
-.ventas-container {
+.compras-container {
   max-width: 1200px;
   margin: 40px auto;
   padding: 30px;
@@ -8,14 +8,13 @@
   backdrop-filter: blur(8px);
 }
 
-.ventas-container h1 {
+.compras-container h1 {
   font-size: 2.2rem;
   color: #0f172a;
   margin-top: 0;
   margin-bottom: 8px;
   text-align: center;
 }
-
 .detalle-card {
   background-color: rgba(255,255,255,0.92);
   border-radius: 16px;
@@ -25,7 +24,6 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   backdrop-filter: blur(8px);
 }
-
 .detalle-card h1, .detalle-card h2 {
   color: #0f172a;
   text-align: left;

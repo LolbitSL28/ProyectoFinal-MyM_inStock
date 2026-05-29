@@ -15,32 +15,22 @@ function DetalleVenta() {
   }, [dispatch, id]);
 
   return (
-    <>
-      <h1>Detalle de Venta</h1>
-      <button onClick={() => navigate("/ventas")}>Volver</button>
-      <hr />
-      <h2>Información General</h2>
-      <p>
-        <strong>Fecha:</strong> {new Date(venta.fecha).toLocaleString()}
-      </p>
-      <p>
-        <strong>Usuario:</strong> {venta.usuarioNombre}
-      </p>
-      <p>
-        <strong>Subtotal:</strong> ${venta.subtotal}
-      </p>
-      <p>
-        <strong>IVA (16%):</strong> ${venta.iva}
-      </p>
-      <p>
-        <strong>Total:</strong> ${venta.total}
-      </p>
-      <h2>Productos</h2>
-      <div>
-        <TableDetalleVenta detalles={venta.detalles} />
-      </div>
-    </>
-  );
+  <div className="detalle-card">
+    <button className="btn-volver" onClick={() => navigate("/ventas")}>← Volver</button>
+    <h1>Detalle de Venta</h1>
+    <hr />
+    <h2>Información General</h2>
+    <p><strong>Fecha:</strong> {new Date(venta.fecha).toLocaleString()}</p>
+    <p><strong>Usuario:</strong> {venta.usuarioNombre}</p>
+    <div className="totales-box">
+      <p>Subtotal: ${venta.subtotal}</p>
+      <p>IVA (16%): ${venta.iva}</p>
+      <h3>Total: ${venta.total}</h3>
+    </div>
+    <h2>Productos</h2>
+    <TableDetalleVenta detalles={venta.detalles} />
+  </div>
+);
 }
 
 export default DetalleVenta;

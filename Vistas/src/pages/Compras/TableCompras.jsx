@@ -12,7 +12,7 @@ function TableCompras({ compras }) {
 
   const detalleButton = (props) => {
     return (
-      <button onClick={() => verDetalle(props.data.id)}>Ver Detalle</button>
+      <button className="grid-btn grid-btn-detalle" onClick={() => verDetalle(props.data.id)}>Ver Detalle</button>
     );
   };
 

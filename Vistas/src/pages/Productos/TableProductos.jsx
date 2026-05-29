@@ -26,35 +26,35 @@ function TableProductos({ productos }) {
     await dispatch(listarProductos());
   }
 
-  const eliminarButton = (props) => (
-  <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
-  );
-
+  const eliminarButton = (props) => {
+    return (
+      <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
+    );
+  };
   function editButton(id) {
     navigate(`/productos/edit/${id}`);
   }
 
-  const modificarButton = (props) => (
-  <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>
-  );
+  const modificarButton = (props) => {
+    return <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>;
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre" },
-    { field: "descripcion", headerName: "Descripción" },
-    { field: "marca", headerName: "Marca" },
-    { field: "stock", headerName: "Stock" },
-    { field: "precioVenta", headerName: "Precio de Venta" },
-    { field: "precioCompra", headerName: "Precio de Compra" },
-    { field: "categoriaNombre", headerName: "Categoría" },
-    { field: "proveedorNombre", headerName: "Proveedor" },
-    { field: "modificar", cellRenderer: modificarButton, width: 95 },
-    { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
+    { field: "nombre", headerName: "Nombre"},
+    { field: "descripcion", headerName: "Descripción"},
+    { field: "marca", headerName: "Marca"},
+    { field: "stock", headerName: "Stock"},
+    { field: "precioVenta", headerName: "Precio de Venta"},
+    { field: "precioCompra", headerName: "Precio de Compra"},
+    { field: "categoriaNombre", headerName: "Categoría"},
+    { field: "proveedorNombre", headerName: "Proveedor"},
+    { field: "modificar", cellRenderer: modificarButton, width: 110},
+    { field: "eliminar", cellRenderer: eliminarButton, width: 110},
   ];
 
- return (
-  <div className="table-wrapper">
-    <div className="ag-theme-alpine" style={{ height: "350px", width: "100%" }}>
+  return (
+    <div style={{ height: "300px", width: "100%" }}>
       <AgGridReact rowData={productos} columnDefs={columns} />
     </div>
   </div>

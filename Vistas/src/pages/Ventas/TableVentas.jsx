@@ -11,7 +11,7 @@ function TableVentas({ ventas }) {
   }
   const detalleButton = (props) => {
     return (
-      <button onClick={() => verDetalle(props.data.id)}>Ver Detalle</button>
+      <button className="grid-btn grid-btn-detalle" onClick={() => verDetalle(props.data.id)}>Ver Detalle</button>
     );
   };
 
@@ -30,7 +30,7 @@ function TableVentas({ ventas }) {
   ];
 
   return (
-    <div style={{ height: "300px", width: "1070px" }}>
+    <div style={{ height: "300px", width: "100%" }}>
       <AgGridReact rowData={ventas} columnDefs={columns} />
     </div>
   );
