@@ -3,6 +3,7 @@ import { ModuleRegistry, ClientSideRowModelModule } from "ag-grid-community";
 import { useDispatch } from "react-redux";
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Productos/Productos.css";
 import {
   elimProductos,
   listarProductos,
@@ -25,18 +26,17 @@ function TableProductos({ productos }) {
     await dispatch(listarProductos());
   }
 
-  const eliminarButton = (props) => {
-    return (
-      <button onClick={() => handleDelete(props.data.id)}>Eliminar</button>
-    );
-  };
+  const eliminarButton = (props) => (
+  <button className="grid-btn grid-btn-delete" onClick={() => handleDelete(props.data.id)}>Eliminar</button>
+  );
+
   function editButton(id) {
     navigate(`/productos/edit/${id}`);
   }
 
-  const modificarButton = (props) => {
-    return <button onClick={() => editButton(props.data.id)}>Modificar</button>;
-  };
+  const modificarButton = (props) => (
+  <button className="grid-btn grid-btn-edit" onClick={() => editButton(props.data.id)}>Modificar</button>
+  );
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -52,10 +52,12 @@ function TableProductos({ productos }) {
     { field: "eliminar", cellRenderer: eliminarButton, width: 90 },
   ];
 
-  return (
-    <div style={{ height: "300px", width: "1070px" }}>
+ return (
+  <div className="table-wrapper">
+    <div className="ag-theme-alpine" style={{ height: "350px", width: "100%" }}>
       <AgGridReact rowData={productos} columnDefs={columns} />
     </div>
-  );
+  </div>
+);
 }
 export default TableProductos;
